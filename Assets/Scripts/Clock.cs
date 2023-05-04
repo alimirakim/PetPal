@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
 public class Clock : MonoBehaviour
 {
   private string timePeriod;
+  public enum WeatherType { Clear, Cloudy, Windy, Rainy, Stormy }
+  public enum SeasonType { Spring, Summer, Autumn, Winter }
   
   private DateTime now = DateTime.Now;
   
@@ -43,5 +46,18 @@ public class Clock : MonoBehaviour
       }
       
       return timesOfDay[timesOfDay.Length - 1].Label;
+    }
+    
+    private void GenerateWeather() {
+    Dictionary<WeatherType, float> weatherChances = new Dictionary<WeatherType, float> {
+      { WeatherType.Clear, 0.5f },
+      { WeatherType.Cloudy, 0.2f },
+      { WeatherType.Windy, 0.1f },
+      { WeatherType.Rainy, 0.15f },
+      { WeatherType.Stormy, 0.05f },
+    };
+    
+    
+    
     }
 }
