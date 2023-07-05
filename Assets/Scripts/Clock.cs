@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class Clock : MonoBehaviour
 {
-  private string timePeriod;
   public enum WeatherType { Clear, Cloudy, Windy, Rainy, Stormy }
   public enum SeasonType { Spring, Summer, Autumn, Winter }
   
+  private string timePeriod;
+  private WeatherType weatherType;
   private DateTime now = DateTime.Now;
   
   
@@ -17,6 +18,9 @@ public class Clock : MonoBehaviour
     {
       timePeriod = GetTimePeriodLabel();
       Debug.Log(timePeriod);
+      
+      weatherType = GenerateWeather();
+      Debug.Log(weatherType);
     }
 
     // Update is called once per frame
@@ -48,7 +52,7 @@ public class Clock : MonoBehaviour
       return timesOfDay[timesOfDay.Length - 1].Label;
     }
     
-    private void GenerateWeather() {
+    private WeatherType GenerateWeather() {
     Dictionary<WeatherType, float> weatherChances = new Dictionary<WeatherType, float> {
       { WeatherType.Clear, 0.5f },
       { WeatherType.Cloudy, 0.2f },
@@ -57,7 +61,7 @@ public class Clock : MonoBehaviour
       { WeatherType.Stormy, 0.05f },
     };
     
-    
-    
+    // TODO randomize return value based on weatherChances
+    return WeatherType.Clear;
     }
 }
